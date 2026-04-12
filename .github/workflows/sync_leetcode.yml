@@ -1,8 +1,8 @@
 name: Sync LeetCode
 on:
-  workflow_dispatch: # Allows manual trigger
+  workflow_dispatch:
   schedule:
-    - cron: "0 8 * * 6" # Runs weekly (Saturday at 8 AM)
+    - cron: "0 0 * * *" # This will now run DAILY at midnight
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,4 +13,5 @@ jobs:
           github-token: ${{ github.token }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
-          destination-folder: my-folder # Optional folder name
+          destination-folder: leetcode-solutions
+          group-by-difficulty: true # This creates Easy/Medium/Hard folders
